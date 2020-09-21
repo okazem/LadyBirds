@@ -21,4 +21,4 @@ jobs:
       # ↑ buildが違うコマンドなら、適宜変更して下さい
     - name: deploy to Firebase Hosting
       run: |
-        yarn deploy --token=${{1//0e0OCpHVXr7dbCgYIARAAGA4SNwF-L9Ira_j56pDfBDAPVumcDqiqDr1H7RW12zybYDvOPbRbpjAjiF4ERDejMgpmiXTMdocZ1BY}}
+        yarn deploy --token=${{ secrets.FIREBASE_TOKEN }
