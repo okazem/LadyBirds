@@ -1,0 +1,30 @@
+body{
+    background-color: #9966FF;
+}
+.messages{
+    background-color: white;
+    width: 70%;
+}
+.title{
+    color: white;
+    font-size: 150%;
+}
+
+.banner{
+    background-color:#ff89ff;
+    position: fixed;
+    top: auto;
+    width: 99%;
+    border-radius: 50px;
+}
+
+.s-message{
+    position: fixed;
+    top: 90%;
+    left: 30%;
+    width: 30%;
+}
+.s_buttom{
+    border-radius: 50%;
+    background-color: #ff89ff;
+}
