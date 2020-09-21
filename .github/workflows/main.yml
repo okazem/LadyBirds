@@ -17,7 +17,7 @@ jobs:
       - name: Build vue contents
         run: yarn build
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: git@github.com:My-pen/LadyBirds.git
         with:
           args: deploy --only hosting
         env:
