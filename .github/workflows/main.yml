@@ -1,19 +1,24 @@
-image: rambabusaravanan/firebase
+name: Firebase Deploy
 
-stages:
-  - deploy
+on:
+  push:
+    braches: 
+      - master
 
-cache:                  
-  paths:                
-    - node_modules/     
-  key: "$CI_BUILD_REPO" 
-
-deploy-prod:
-  stage: deploy
-  only:
-    - master
-  script:
-    - yarn
-    - yarn run build
-    - firebase use project_id: ${{ secrets.project_id}} --token FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    - firebase deploy --only hosting -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+jobs:
+  firebase:
+    name: Build and Deploy Firebase Hosting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn
+      - name: Build vue contents
+        run: yarn build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
