@@ -1,32 +1,9 @@
-version: 2
-jobs:
- deploy_app:
-   working_directory: ~/LadyBirds
-   docker:
-     - image: circleci/node:10-browsers
-   steps:
-     - checkout
-     - run:
-         name: node_modulesのインストール
-         command: |
-           yarn
-     - run:
-         name: ビルド
-         command: |
-           yarn run build
-     - run:
-         name: firebase-toolsのインストール
-         command: |
-           yarn add --dev firebase-tools
-     - run:
-         name: firebaseへデプロイ
-         command: |
-           ./node_modules/.bin/firebase deploy --token=${{ secrets.FIREBASE_TOKEN }}
-workflows:
- version: 2
- build-deploy:
-   jobs:
-     - deploy_app:
-         filters:
-           branches:
-             only: master
+version: 2.1 jobs: build: docker:
+
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: 最初のステップ
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
